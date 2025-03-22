@@ -1,0 +1,23 @@
+# Ignore target directory (compiled artifacts)
+target/
+
+# Ignore Maven wrapper files and dependencies
+.mvn/
+mvnw
+mvnw.cmd
+
+# Ignore IDE/editor config files
+*.iml
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore logs and temp files
+logs/
+*.log
+*.tmp
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
