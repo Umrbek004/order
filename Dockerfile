@@ -1,25 +1,14 @@
 # Use an official Java runtime as a parent image
 FROM openjdk:21
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the Maven wrapper and pom.xml files first to leverage Docker caching
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+# Copy the application JAR file into the container
+COPY target/*.jar app.jar
 
-# Download dependencies before copying the source code
-RUN ./mvnw dependency:go-offline -B
-
-# Copy the entire source code
-COPY src src
-
-# Build the application (skipping tests for faster build)
-RUN ./mvnw clean package -DskipTests
-
-# Expose the application port
+# Expose the application port (change if needed)
 EXPOSE 8889
 
-# Run the application
-CMD ["java", "-jar", "target/order-0.0.1-SNAPSHOT.jar"]
+# Command to run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
